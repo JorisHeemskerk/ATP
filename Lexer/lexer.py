@@ -1,51 +1,20 @@
-from os import truncate
 from typing import List
 import re
+from keywords import keywords
+from name_database import name_database
+from tokens import *
 
-
-keywords = {
-    'bob' : lambda : Add(4,2),
-    'optellen' : lambda : Add(3,6)
-}
-
-class Token:
-    def __init__(self):
-        self.line_nr = 0
-        self.char_nr = 0
-    
-    def __str__(self):
-        return "undefined"
-
-class Add(Token):
-    def __init__(self, left, right):
-        self.left = left
-        self.right = right
-
-    def __str__(self):
-        return "Add"
-
-
-
-def lexer(code : list[str], token_list : list[Token]):
+def lexer(code : List[str], token_list : List[Token] = []):
     word, *code_rest = code
-    if(word in keywords):
-        print(keywords.get(word, "fuck")())
+    if word in keywords:
         token_list.append(keywords.get(word, "fuck")())
+    elif word in name_database:
+        token_list.append(Variable(word))
         
-
-    if(code_rest != []):
-        lexer(code_rest, token_list)
+    if code_rest != []:
+        return lexer(code_rest, token_list)
     else:
-        print("F")
         return token_list
-
-
-
-
-
-
-
-
 
 
 
@@ -53,6 +22,7 @@ with open('code.g', 'r') as file:
     code = file.read()
 code = re.split(', |\.\n| |\.', code)
 
-# token_list = List[str]
-token_list = lexer(code, [])
-print(token_list)
+token_list = lexer(code)
+for token in token_list:
+    print(token.__str__())
+print(token_list[0].request_name())

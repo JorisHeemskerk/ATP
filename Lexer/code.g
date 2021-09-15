@@ -1,2 +1,2 @@
-bob is 5 jaar oud.
-bob wil 5 jaar bij zijn leeftijd optellen.
+Bob is 5 jaar oud.
+Bob wil 5 jaar bij zijn leeftijd optellen.
