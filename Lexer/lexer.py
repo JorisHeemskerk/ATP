@@ -25,4 +25,3 @@ code = re.split(', |\.\n| |\.', code)
 token_list = lexer(code)
 for token in token_list:
     print(token.__str__())
-print(token_list[0].request_name())
