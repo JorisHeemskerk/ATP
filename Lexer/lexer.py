@@ -7,7 +7,19 @@ from tokens import *
 def lexer(code : List[str], token_list : List[Token] = []):
     word, *code_rest = code
     if word in keywords:
-        token_list.append(keywords.get(word, "fuck")())
+        token_list.append(keywords.get(word)())
+    elif word[0] == '\"' and word[-1] == '\"':
+        token_list.append(String(word))
+    elif word.isdecimal():
+        token_list.append(Int(int(word)))
+    elif word == "groter" and code_rest[0] == "dan":
+        token_list.append(GreaterThen())
+    elif word == "groter" and code_rest[0] == "dan" and code_rest[1] == "of" and code_rest[2] == "gelijk":
+        token_list.append(GreaterEqual())
+    elif word == "groter" and code_rest[0] == "dan":
+        token_list.append(LesserEqual())
+    elif word == "kleiner" and code_rest[0] == "dan" and code_rest[1] == "of" and code_rest[2] == "gelijk":
+        token_list.append(LesserEqual())
     elif word in name_database:
         token_list.append(Variable(word))
         
