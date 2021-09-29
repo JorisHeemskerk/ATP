@@ -41,15 +41,15 @@ class FunctionEnd(Token):
 
 
 
-class IfStart(Token):
+class If(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return 'IfStart'
+        return 'If'
 
-class IfThen(Token):
+class Then(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return 'IfThen'
+        return 'Then'
 
 class Else(Token):
     # __str__ :: None -> String

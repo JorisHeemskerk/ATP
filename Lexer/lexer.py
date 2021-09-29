@@ -30,8 +30,7 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
     endline = False
 
     word, *code_rest = code
-    lower_word = word.lower()
-    print(word)
+    
 
     try:
         if word[-1] == '.':
@@ -39,6 +38,7 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
             endline = True
     except:
         pass
+    lower_word = word.lower()
 
     if lower_word in keywords:
         token_list.append(keywords.get(lower_word)())
@@ -48,9 +48,11 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
         token_list.append(FunctionName(word))
     elif word.isdecimal():
         token_list.append(Int(int(word)))
-
     elif contains(code, "niet waar"):
         token_list.append(Boolean(False))
+        code_rest = code_rest[1:]
+    elif contains(code, "wel waar"):
+        token_list.append(Boolean(True))
         code_rest = code_rest[1:]
     elif contains(code, "gelijk aan"):
         token_list.append(GreaterEqual())
@@ -80,7 +82,7 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
 
 
 
-code =read_file('code.g')
-
+code = read_file('code.g')
 token_list = lexer(code)
+print('lexer output: ')
 for token in token_list: print(token)

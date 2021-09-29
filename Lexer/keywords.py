@@ -18,8 +18,8 @@ keywords = {
     'deelt'             : lambda : Divide(),
     'gedeeld'           : lambda : Divide(),
 
-    'als'               : lambda : IfStart(),
-    'dan'               : lambda : IfThen(),
+    'als'               : lambda : If(),
+    'dan'               : lambda : Then(),
     'anders'            : lambda : Else(),
 
     'retourneert'       : lambda : Return(),
@@ -27,10 +27,7 @@ keywords = {
     'gesprek'           : lambda : FunctionStart(),
     'tussen'            : lambda : FunctionParamaterListIdentifier(),
     'over'              : lambda : FunctionNameIdentifier(),
-    ''                  : lambda : FunctionEnd(),
-    
-    'waar'              : lambda : Boolean(True),
-    'onwaar'            : lambda : Boolean(False),
+    ''                  : lambda : FunctionEnd()
     # ''            : lambda : (),
 
 }
