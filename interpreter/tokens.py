@@ -78,7 +78,7 @@ class GreaterThen(Token):
     def __str__(self) -> str:
         return 'GreaterThen'
 
-class Equals(Token):
+class EqualTo(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Equals'
@@ -115,7 +115,7 @@ class Variable(Token):
 
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return ('Variable: ' + self.name)
+        return ('\033[36mVariable: \033[37m' + self.name)
 
 class Int(Token):
     # __init__ :: Int -> None
@@ -124,16 +124,16 @@ class Int(Token):
 
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return ('Int: ' + str(self.value))
+        return ('\033[36mInt: \033[37m' + str(self.value))
 
-class String(Token):
-    # __init__ :: String -> None
-    def __init__(self, value : str) -> None:
-        self.value = value
+# class String(Token):
+#     # __init__ :: String -> None
+#     def __init__(self, value : str) -> None:
+#         self.value = value
 
-    # __str__ :: None -> String
-    def __str__(self) -> str:
-        return ('String: ' + self.value)
+#     # __str__ :: None -> String
+#     def __str__(self) -> str:
+#         return ('\033[36mString: \033[37m' + self.value)
 
 class Boolean(Token):
     # __init__ :: Boolean -> None
@@ -142,7 +142,7 @@ class Boolean(Token):
 
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return ('Boolean: ' + str(self.value))
+        return ('\033[36mBoolean: \033[37m' + str(self.value))
 
 
 

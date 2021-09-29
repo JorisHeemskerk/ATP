@@ -13,7 +13,6 @@ token_list = lexer(code)
 
 trash, code_block, trash = parser(token_list, stat.CodeBlock())
 
-########## print parser output ##########
-print('parser output: ')
-print(code_block)
-#########################################
+############ print parser output ############
+print('parser output:\n' + str(code_block))
+#############################################

@@ -55,7 +55,7 @@ def lexer(code : List[str], token_list : List[tok.Token] = []) -> List[tok.Token
         token_list.append(tok.Boolean(True))
         code_rest = code_rest[1:]
     elif contains(code, "gelijk aan"):
-        token_list.append(tok.GreaterEqual())
+        token_list.append(tok.EqualTo())
         code_rest = code_rest[1:]
     elif contains(code, "groter dan of gelijk aan"):
         token_list.append(tok.GreaterEqual())
