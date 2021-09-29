@@ -4,11 +4,27 @@ from keywords import keywords
 from name_database import name_database
 from tokens import *
 
-def lexer(code : List[str], token_list : List[Token] = []):
-    endline : bool = False
-    
+def list_to_string(code : List[str], code_string : str = '') -> str:
+    if code != []:
+        return list_to_string (code[1:], code_string + ' ' + code[0])
+    return code_string
+
+
+def contains(code : List[str], substring : str) -> bool:
+    # code_string : str = ' '.join([word for word in code])
+    code_string = list_to_string(code)
+    code_string = code_string.lower()
+    if code_string.find(substring) == 1:
+        return True
+    return False
+
+
+def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
+    endline = False
+
     word, *code_rest = code
-    print(word)
+    lower_word = word.lower()
+
     try:
         if word[-1] == '.':
             word = word[:-1]
@@ -16,7 +32,7 @@ def lexer(code : List[str], token_list : List[Token] = []):
     except:
         pass
 
-    if word in keywords:
+    if lower_word in keywords:
         token_list.append(keywords.get(word)())
     elif word[0] == '\"' and word[-1] == '\"':
         token_list.append(String(word))
@@ -24,14 +40,25 @@ def lexer(code : List[str], token_list : List[Token] = []):
         token_list.append(FunctionName(word))
     elif word.isdecimal():
         token_list.append(Int(int(word)))
-    elif word == "groter" and code_rest[0] == "dan":
-        token_list.append(GreaterThen())
-    elif word == "groter" and code_rest[0] == "dan" and code_rest[1] == "of" and code_rest[2] == "gelijk":
+
+    elif contains(code, "niet waar"):
+        token_list.append(Boolean(False))
+        code_rest = code_rest[1:]
+    elif contains(code, "gelijk aan"):
         token_list.append(GreaterEqual())
-    elif word == "groter" and code_rest[0] == "dan":
+        code_rest = code_rest[1:]
+    elif contains(code, "groter dan of gelijk aan"):
+        token_list.append(GreaterEqual())
+        code_rest = code_rest[4:]
+    elif contains(code, "groter dan"):
+        token_list.append(GreaterThen())
+        code_rest = code_rest[1:]
+    elif contains(code, "kleiner dan of gelijk aan"):
         token_list.append(LesserEqual())
-    elif word == "kleiner" and code_rest[0] == "dan" and code_rest[1] == "of" and code_rest[2] == "gelijk":
+        code_rest = code_rest[4:]
+    elif contains(code, "kleiner dan"):
         token_list.append(LesserEqual())
+        code_rest = code_rest[1:]
     elif word in name_database:
         token_list.append(Variable(word))
         
