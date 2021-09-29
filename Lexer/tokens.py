@@ -96,7 +96,7 @@ class Variable(Token):
         self.value = value
 
     def __str__(self) -> str:
-        return ('Variable ' + self.name)
+        return ('Variable: ' + self.name)
 
 
 
@@ -106,11 +106,17 @@ class Int(Token):
         self.value = value
 
     def __str__(self) -> str:
-        return ('Int ' + str(self.value))
+        return ('Int: ' + str(self.value))
 
 class String(Token):
     def __init__(self, value : str) -> None:
         self.value = value
 
     def __str__(self) -> str:
-        return ('String ' + self.value)
+        return ('String: ' + self.value)
+
+
+
+class EndLine(Token):
+    def __str__(self) -> str:
+        return ('EndLine')

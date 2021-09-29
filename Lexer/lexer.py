@@ -5,7 +5,17 @@ from name_database import name_database
 from tokens import *
 
 def lexer(code : List[str], token_list : List[Token] = []):
+    endline : bool = False
+    
     word, *code_rest = code
+    print(word)
+    try:
+        if word[-1] == '.':
+            word = word[:-1]
+            endline = True
+    except:
+        pass
+
     if word in keywords:
         token_list.append(keywords.get(word)())
     elif word[0] == '\"' and word[-1] == '\"':
@@ -25,6 +35,9 @@ def lexer(code : List[str], token_list : List[Token] = []):
     elif word in name_database:
         token_list.append(Variable(word))
         
+    if endline:
+        token_list.append(EndLine())
+
     if code_rest != []:
         return lexer(code_rest, token_list)
     else:
@@ -34,7 +47,7 @@ def lexer(code : List[str], token_list : List[Token] = []):
 
 with open('code.g', 'r') as file:
     code = file.read()
-code = re.split(', |\.\n| |\.', code)
+code = re.split(', |\n| ', code)
 
 token_list = lexer(code)
 for token in token_list: print(token)
