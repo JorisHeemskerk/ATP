@@ -1,122 +1,89 @@
 class Token:
-    def __init__(self):
+    def __init__(self) -> None:
         self.line_nr = 0
         self.char_nr = 0
     
-    def __str__(self):
-        return "undefined"
+    def __str__(self) -> str:
+        return 'undefined'
 
-class Function(Token):
-    def __str__(self):
-        return "Function"
+
+
+class FunctionStart(Token):
+    def __str__(self) -> str:
+        return 'FunctionStart'
+
+class FunctionParamaterListIdentifier(Token):
+    def __str__(self) -> str:
+        return 'FunctionParamaterListIdentifier'
+
+class FunctionNameIdentifier(Token):
+    def __str__(self) -> str:
+        return 'FunctionNameIdentifier'
+
+class FunctionName(Token):
+    def __init__(self, value : str) -> None:
+        self.value = value
+
+    def __str__(self) -> str:
+        return 'FunctionName: ' + self.value
+
 class FunctionEnd(Token):
-    def __str__(self):
-        return "FunctionEnd"
+    def __str__(self) -> str:
+        return 'FunctionEnd'
+
 
 
 class BooleanExpression(Token):
-    def __init__(self, left = 0, right = 0):
-        self.left = left
-        self.right = right
+    # def __init__(self, left = 0, right = 0):
+    #     self.left = left
+    #     self.right = right
 
-    def solve_sides(self):
-        try:
-            self.left = self.left.calculate()
-        except Exception:
-            pass
-        try:
-            self.right = self.right.calculate()
-        except Exception:
-            pass
-
-    def __str__(self):
-        return "BooleanExpression"
+    def __str__(self) -> str:
+        return 'BooleanExpression'
 
 class LesserEqual(BooleanExpression):
-    def calculate(self):
-        self.solve_sides()
-        return self.left <= self.right
-
-    def __str__(self):
-        return "LesserEqual"
+    def __str__(self) -> str:
+        return 'LesserEqual'
 
 class GreaterEqual(BooleanExpression):
-    def calculate(self):
-        self.solve_sides()
-        return self.left >= self.right
-
-    def __str__(self):
-        return "GreaterEqual"
+    def __str__(self) -> str:
+        return 'GreaterEqual'
 
 class LesserThen(BooleanExpression):
-    def calculate(self):
-        self.solve_sides()
-        return self.left > self.right
-
-    def __str__(self):
-        return "LesserThen"
+    def __str__(self) -> str:
+        return 'LesserThen'
 
 class GreaterThen(BooleanExpression):
-    def calculate(self):
-        self.solve_sides()
-        return self.left > self.right
-
-    def __str__(self):
-        return "GreaterThen"
+    def __str__(self) -> str:
+        return 'GreaterThen'
 
 
 
 
 
 class RegularExpression(Token):
-    def __init__(self, left = 0, right = 0):
-        self.left = left
-        self.right = right
+    # def __init__(self, left = 0, right = 0):
+    #     self.left = left
+    #     self.right = right
 
-    def solve_sides(self):
-        try:
-            self.left = self.left.calculate()
-        except Exception:
-            pass
-        try:
-            self.right = self.right.calculate()
-        except Exception:
-            pass
-
-    def __str__(self):
-        return "RegularExpression"
+    def __str__(self) -> str:
+        return 'RegularExpression'
 
 class Add(Token):
-    def calculate(self):
-        self.solve_sides()
-        return self.left + self.right
-    
-    def __str__(self):
-        return "Add"
+    def __str__(self) -> str:
+        return 'Add'
 
 class Subtract(Token):
-    def calculate(self):
-        self.solve_sides()
-        return self.left - self.right
-
-    def __str__(self):
-        return "Subtract"
+    def __str__(self) -> str:
+        return 'Subtract'
 
 class Multiply(Token):
-    def calculate(self):
-        self.solve_sides()
-        return self.left * self.right
-
-    def __str__(self):
-        return "Multiply"
+    def __str__(self) -> str:
+        return 'Multiply'
 
 class Divide(Token):
-    def calculate(self):
-        self.solve_sides()
-        return self.left / self.right
-
-    def __str__(self):
-        return "Divide"
+    def __str__(self) -> str:
+        return 'Divide'
 
 
 
@@ -124,26 +91,26 @@ class Divide(Token):
 
 
 class Variable(Token):
-    def __init__(self, name : str, value = 0):
+    def __init__(self, name : str, value = 0) -> None:
         self.name = name
         self.value = value
 
-    def __str__(self):
-        return ("Variable " + self.name)
+    def __str__(self) -> str:
+        return ('Variable ' + self.name)
 
 
 
 
 class Int(Token):
-    def __init__(self, value : int):
+    def __init__(self, value : int) -> None:
         self.value = value
 
-    def __str__(self):
-        return ("Int " + str(self.value))
+    def __str__(self) -> str:
+        return ('Int ' + str(self.value))
 
 class String(Token):
-    def __init__(self, value : str):
+    def __init__(self, value : str) -> None:
         self.value = value
 
-    def __str__(self):
-        return ("String " + self.value)
+    def __str__(self) -> str:
+        return ('String ' + self.value)

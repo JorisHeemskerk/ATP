@@ -31,15 +31,10 @@ keywords = {
     'gedeeld'           : lambda : Divide(),
     'Gedeeld'           : lambda : Divide(),
 
-    'gesprek'           : lambda : Function(),
+    'gesprek'           : lambda : FunctionStart(),
+    'tussen'            : lambda : FunctionParamaterListIdentifier(),
+    'over'              : lambda : FunctionNameIdentifier(),
     ''                  : lambda : FunctionEnd()
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
-    # '' : lambda : (),
+    # ''            : lambda : (),
 
 }

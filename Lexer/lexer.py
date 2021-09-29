@@ -10,6 +10,8 @@ def lexer(code : List[str], token_list : List[Token] = []):
         token_list.append(keywords.get(word)())
     elif word[0] == '\"' and word[-1] == '\"':
         token_list.append(String(word))
+    elif word[0] == '\'' and word[-1] == '\'':
+        token_list.append(FunctionName(word))
     elif word.isdecimal():
         token_list.append(Int(int(word)))
     elif word == "groter" and code_rest[0] == "dan":
