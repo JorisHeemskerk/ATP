@@ -165,7 +165,7 @@ class Boolean(Token):
 
     # __str__ :: None -> String
     def __str__(self) -> str:
-        return ('Boolean: ' + self.value)
+        return ('Boolean: ' + str(self.value))
 
 
 

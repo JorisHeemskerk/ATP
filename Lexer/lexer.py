@@ -4,12 +4,19 @@ from keywords import keywords
 from name_database import name_database
 from tokens import *
 
+# read_file :: string -> [String]
+def read_file(filename : str) -> List[str]:
+    with open(filename, 'r') as file:
+        code = file.read()
+    return(re.split(', |\n| ', code))
+
+# list_to_string :: [String] -> String -> String
 def list_to_string(code : List[str], code_string : str = '') -> str:
     if code != []:
         return list_to_string (code[1:], code_string + ' ' + code[0])
     return code_string
 
-
+# contains :: [String] -> String -> Boolean
 def contains(code : List[str], substring : str) -> bool:
     # code_string : str = ' '.join([word for word in code])
     code_string = list_to_string(code)
@@ -18,12 +25,13 @@ def contains(code : List[str], substring : str) -> bool:
         return True
     return False
 
-
+# lexer :: [String] -> [Token] -> [Token]
 def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
     endline = False
 
     word, *code_rest = code
     lower_word = word.lower()
+    print(word)
 
     try:
         if word[-1] == '.':
@@ -33,10 +41,10 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
         pass
 
     if lower_word in keywords:
-        token_list.append(keywords.get(word)())
-    elif word[0] == '\"' and word[-1] == '\"':
+        token_list.append(keywords.get(lower_word)())
+    elif word[0] == '\"' and word[-1] == '\"' or word[0] == '\"' and word[-2] == '\"':
         token_list.append(String(word))
-    elif word[0] == '\'' and word[-1] == '\'':
+    elif word[0] == '\'' and word[-1] == '\'' or word[0] == '\'' and word[-2] == '\'':
         token_list.append(FunctionName(word))
     elif word.isdecimal():
         token_list.append(Int(int(word)))
@@ -72,9 +80,7 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
 
 
 
-with open('code.g', 'r') as file:
-    code = file.read()
-code = re.split(', |\n| ', code)
+code =read_file('code.g')
 
 token_list = lexer(code)
 for token in token_list: print(token)
