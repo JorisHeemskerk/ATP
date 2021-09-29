@@ -35,5 +35,4 @@ with open('code.g', 'r') as file:
 code = re.split(', |\.\n| |\.', code)
 
 token_list = lexer(code)
-for token in token_list:
-    print(token.__str__())
+for token in token_list: print(token)
