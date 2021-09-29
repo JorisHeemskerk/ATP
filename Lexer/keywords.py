@@ -1,33 +1,31 @@
-from tokens import *
+import tokens as tok
 
 keywords = {
-    'optellen'          : lambda : Add(),
-    'optelt'            : lambda : Add(),
-    'opgeteld'          : lambda : Add(),
+    'optellen'          : lambda : tok.Add(),
+    'optelt'            : lambda : tok.Add(),
+    'opgeteld'          : lambda : tok.Add(),
 
 
-    'aftrekken'         : lambda : Subtract(),
-    'aftrekt'   	    : lambda : Subtract(),
-    'afgetrokken'       : lambda : Subtract(),
+    'aftrekken'         : lambda : tok.Subtract(),
+    'aftrekt'   	    : lambda : tok.Subtract(),
+    'afgetrokken'       : lambda : tok.Subtract(),
 
-    'vermenigvuldigen'  : lambda : Multiply(),
-    'vermenigvuldigt'   : lambda : Multiply(),
-    'vermenigvuldigd'   : lambda : Multiply(),
+    'vermenigvuldigen'  : lambda : tok.Multiply(),
+    'vermenigvuldigt'   : lambda : tok.Multiply(),
+    'vermenigvuldigd'   : lambda : tok.Multiply(),
 
-    'delen'             : lambda : Divide(),
-    'deelt'             : lambda : Divide(),
-    'gedeeld'           : lambda : Divide(),
+    'delen'             : lambda : tok.Divide(),
+    'deelt'             : lambda : tok.Divide(),
+    'gedeeld'           : lambda : tok.Divide(),
 
-    'als'               : lambda : If(),
-    'dan'               : lambda : Then(),
-    'anders'            : lambda : Else(),
+    'als'               : lambda : tok.If(),
+    'dan'               : lambda : tok.Then(),
+    'anders'            : lambda : tok.Else(),
 
-    'retourneert'       : lambda : Return(),
+    'retourneert'       : lambda : tok.Return(),
 
-    'gesprek'           : lambda : FunctionStart(),
-    'tussen'            : lambda : FunctionParamaterListIdentifier(),
-    'over'              : lambda : FunctionNameIdentifier(),
-    ''                  : lambda : FunctionEnd()
-    # ''            : lambda : (),
-
+    'gesprek'           : lambda : tok.FunctionStart(),
+    'tussen'            : lambda : tok.FunctionParamaterListIdentifier(),
+    'over'              : lambda : tok.FunctionNameIdentifier(),
+    ''                  : lambda : tok.FunctionEnd()
 }

@@ -2,7 +2,7 @@ from typing import List
 import re
 from keywords import keywords
 from name_database import name_database
-from tokens import *
+import tokens as tok
 
 # read_file :: string -> [String]
 def read_file(filename : str) -> List[str]:
@@ -26,7 +26,7 @@ def contains(code : List[str], substring : str) -> bool:
     return False
 
 # lexer :: [String] -> [Token] -> [Token]
-def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
+def lexer(code : List[str], token_list : List[tok.Token] = []) -> List[tok.Token]:
     endline = False
 
     word, *code_rest = code
@@ -43,46 +43,39 @@ def lexer(code : List[str], token_list : List[Token] = []) -> List[Token]:
     if lower_word in keywords:
         token_list.append(keywords.get(lower_word)())
     elif word[0] == '\"' and word[-1] == '\"' or word[0] == '\"' and word[-2] == '\"':
-        token_list.append(String(word))
+        token_list.append(tok.String(word))
     elif word[0] == '\'' and word[-1] == '\'' or word[0] == '\'' and word[-2] == '\'':
-        token_list.append(FunctionName(word))
+        token_list.append(tok.FunctionName(word))
     elif word.isdecimal():
-        token_list.append(Int(int(word)))
+        token_list.append(tok.Int(int(word)))
     elif contains(code, "niet waar"):
-        token_list.append(Boolean(False))
+        token_list.append(tok.Boolean(False))
         code_rest = code_rest[1:]
     elif contains(code, "wel waar"):
-        token_list.append(Boolean(True))
+        token_list.append(tok.Boolean(True))
         code_rest = code_rest[1:]
     elif contains(code, "gelijk aan"):
-        token_list.append(GreaterEqual())
+        token_list.append(tok.GreaterEqual())
         code_rest = code_rest[1:]
     elif contains(code, "groter dan of gelijk aan"):
-        token_list.append(GreaterEqual())
+        token_list.append(tok.GreaterEqual())
         code_rest = code_rest[4:]
     elif contains(code, "groter dan"):
-        token_list.append(GreaterThen())
+        token_list.append(tok.GreaterThen())
         code_rest = code_rest[1:]
     elif contains(code, "kleiner dan of gelijk aan"):
-        token_list.append(LesserEqual())
+        token_list.append(tok.LesserEqual())
         code_rest = code_rest[4:]
     elif contains(code, "kleiner dan"):
-        token_list.append(LesserEqual())
+        token_list.append(tok.LesserEqual())
         code_rest = code_rest[1:]
     elif word in name_database:
-        token_list.append(Variable(word))
+        token_list.append(tok.Variable(word))
         
     if endline:
-        token_list.append(EndLine())
+        token_list.append(tok.EndLine())
 
     if code_rest != []:
         return lexer(code_rest, token_list)
     else:
         return token_list
-
-
-
-code = read_file('code.g')
-token_list = lexer(code)
-print('lexer output: ')
-for token in token_list: print(token)

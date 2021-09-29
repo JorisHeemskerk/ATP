@@ -58,75 +58,52 @@ class Else(Token):
 
 
 
-class BooleanExpression(Token):
-    # def __init__(self, left = 0, right = 0):
-    #     self.left = left
-    #     self.right = right
-
-    # __str__ :: None -> String
-    def __str__(self) -> str:
-        return 'BooleanExpression'
-
-class LesserEqual(BooleanExpression):
+class LesserEqual(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'LesserEqual'
 
-class GreaterEqual(BooleanExpression):
+class GreaterEqual(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'GreaterEqual'
 
-class LesserThen(BooleanExpression):
+class LesserThen(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'LesserThen'
 
-class GreaterThen(BooleanExpression):
+class GreaterThen(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'GreaterThen'
 
-class Equals(BooleanExpression):
+class Equals(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Equals'
 
 
 
-
-
-class RegularExpression(Token):
-    # def __init__(self, left = 0, right = 0):
-    #     self.left = left
-    #     self.right = right
-
-    # __str__ :: None -> String
-    def __str__(self) -> str:
-        return 'RegularExpression'
-
-class Add(RegularExpression):
+class Add(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Add'
 
-class Subtract(RegularExpression):
+class Subtract(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Subtract'
 
-class Multiply(RegularExpression):
+class Multiply(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Multiply'
 
-class Divide(RegularExpression):
+class Divide(Token):
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'Divide'
-
-
-
 
 
 
