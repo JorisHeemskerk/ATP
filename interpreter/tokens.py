@@ -1,9 +1,4 @@
 class Token:
-    # __init__ :: None -> None
-    def __init__(self) -> None:
-        self.line_nr = 0
-        self.char_nr = 0
-
     # __str__ :: None -> String
     def __str__(self) -> str:
         return 'undefined'

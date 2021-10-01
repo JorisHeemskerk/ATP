@@ -15,6 +15,7 @@ def list_to_string(code : List[str], code_string : str = '') -> str:
     if code != []:
         return list_to_string (code[1:], code_string + ' ' + code[0])
     return code_string
+#reduce
 
 # contains :: [String] -> String -> Boolean
 def contains(code : List[str], substring : str) -> bool:
